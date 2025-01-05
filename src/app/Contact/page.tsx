@@ -8,8 +8,6 @@ const Contact = () => {
     subject: '',
     message: ''
   });
-
-  // handleChange function with proper typing
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -17,13 +15,10 @@ const Contact = () => {
       [name]: value
     });
   };
-
-  // handleSubmit function with proper typing
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert('Your message has been sent!');
   };
-
   return (
     <div className="max-w-3xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white shadow-md rounded-lg mt-16">
       <div className="flex items-center justify-center mb-8">
@@ -94,5 +89,4 @@ const Contact = () => {
     </div>
   );
 };
-
 export default Contact;

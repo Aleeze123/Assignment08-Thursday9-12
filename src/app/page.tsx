@@ -11,7 +11,7 @@ const Home = () => {
             <h1 className="text-3xl font-bold sm:text-4xl md:text-5xl lg:text-4xl mb-2 sm:mb-4 md:mb-6 lg:mb-8 ">
               EXPLORE DREAM DISCOVER
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-thin drop-shadow-lg mb-6">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-sans drop-shadow-lg mb-6">
               This is a world travel blog featuring beautiful destinations, new experiences, and hidden places around the globe.
             </p>
             <div className="flex justify-center">

@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
-
 export interface Blog {
   heading: string;
   description: string;
@@ -12,7 +11,6 @@ export interface Blog {
   writter: string;
   writterImage: string;
 }
-
 export default async function blog() {
   const data: Blog[] = await client.fetch(`*[_type == 'blog'] {
     heading,
@@ -23,7 +21,6 @@ export default async function blog() {
       writter,
       "writterImage": writterImage.asset->url
   }`);
-
   return (
     <div className="max-w-7xl mx-auto p-6 bg-white mt-16">
       <div className="flex items-center justify-center mb-8">
@@ -38,7 +35,7 @@ export default async function blog() {
             <div className="relative bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transition transform hover:scale-105 hover:shadow-xl">
               <Image
                 className="w-full h-48 object-cover"
-                src={blog.imageUrl || "/img.webp"} // fallback image
+                src={blog.imageUrl || "/About.png"} 
                 alt={blog.heading}
                 width={400}
                 height={300}
