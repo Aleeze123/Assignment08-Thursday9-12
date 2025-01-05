@@ -3,7 +3,7 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 export interface Blog {
-  heading: string;
+  title: string;
   description: string;
   slug: string;
   imageUrl: string;
@@ -13,7 +13,7 @@ export interface Blog {
 }
 export default async function blog() {
   const data: Blog[] = await client.fetch(`*[_type == 'blog'] {
-    heading,
+    title,
     description,
     "slug": slug.current,
     "imageUrl": image.asset->url,
@@ -36,12 +36,12 @@ export default async function blog() {
               <Image
                 className="w-full h-48 object-cover"
                 src={blog.imageUrl || "/About.png"} 
-                alt={blog.heading}
+                alt={blog.title}
                 width={400}
                 height={300}
               />
               <div className="p-4">
-                <h2 className="text-xl font-bold text-gray-900 mb-2">{blog.heading}</h2>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">{blog.title}</h2>
                 <p className="text-sm text-gray-700 mb-4 line-clamp-2">
                   {blog.description}
                 </p>
@@ -70,4 +70,3 @@ export default async function blog() {
     </div>
   );
 }
-

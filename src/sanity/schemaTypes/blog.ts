@@ -43,49 +43,14 @@ export const blog = defineType({
     defineField({
       name: "date",
       title: "Date",
-      type: "datetime", // For date and time
+      type: "datetime", 
     }),
     defineField({
-      name: "writter",  // Author name
+      name: "writter",  
       title: "Writer",
-      type: "string",   // You can also use reference to another document if needed (e.g., user)
+      type: "string",   
     }),
   ],
 });
 
 
-
-// export default{
-//     name: "blog",
-//     title: "Blog",
-//     type: "document",
-//     fields:[
-//         {
-//         name:"title",
-//         title:"Title",
-//         type:"string"
-//         },
-//         {
-//             name:"description",
-//             title:"Description",
-//             type:"text"
-//             },
-//             {
-//                 name:"slug",
-//                 title:"Slug",
-//                 type:"slug",
-//                 options:{
-//                     source:"title",
-//                     maxLenth:100
-//                 }
-//                 },
-//                 {
-//                     name:"image",
-//                     title:"Image",
-//                     type:"image",
-//                     options:{
-//                         hotspot:true
-//                     }
-//                     }
-//     ]
-// }

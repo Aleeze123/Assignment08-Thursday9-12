@@ -3,20 +3,18 @@ import { client } from '@/sanity/lib/client';
 import { Blog } from '@/app/Blogs/page';
 
 interface Params {
-  slug: string;
+  params: {
+    slug: string;
+    
+  };
 }
+const BlogPost = async ({ params }: Params) => {
+  const { slug } =  params;
 
-interface BlogPostProps {
-  params: Params;
-}
-
-const BlogPost = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
-
-  // Fetch blog data from Sanity 
+  // Fetch blog data from Sanity based on the slug
   const data: Blog = await client.fetch(
     `*[_type == 'blog' && slug.current == $slug]{
-      heading,
+     title,
       description,
       "slug": slug.current,
       "imageUrl": image.asset->url,
@@ -28,18 +26,18 @@ const BlogPost = async ({ params }: { params: { slug: string } }) => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto p-8 md:p-12 bg-white rounded-lg shadow-lg">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="max-w-7xl mx-auto p-8 md:p-12 bg-white ">
+      <div className="bg-white  overflow-hidden">
         <Image
           src={data.imageUrl}
-          alt={data.heading}
+          alt={data.title}
           height={400}
           width={400}
           className="mx-auto object-cover rounded-t-lg"
         />
         <div className="p-6">
           <h2 className="text-2xl md:text-3xl font-sans font-bold text-black mb-4">
-            {data.heading}
+            {data.title}
           </h2>
           <span className="text-xs font-semibold text-gray-700 mb-4">
             Published on {new Date(data.date).toLocaleDateString()}
@@ -66,10 +64,5 @@ const BlogPost = async ({ params }: { params: { slug: string } }) => {
     </div>
   );
 };
-
-export async function generateStaticParams() {
-  const slugs = await client.fetch(`*[_type == 'blog'].slug.current`);
-  return slugs.map((slug: string) => ({ slug }));
-}
 
 export default BlogPost;
